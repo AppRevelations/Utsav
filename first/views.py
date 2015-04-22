@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from utsav.models import Fest,Event
+from utsav.models import Fest,Event,User
 import json
 
 def hello(request):
@@ -52,15 +52,49 @@ def fest_details(request,offset):
 	return HttpResponse(json.dumps(responseArray), content_type="application/json")
 
 
+#this is function to store details of user 
+def saveuser(request):
+        #fetch data from POST request and add it to database
+        u= User()
+        u.user_name=request.POST.get('name','name')
+        u.email_id=request.POST.get('email','abc@example.com')
+        u.contact_number= request.POST.get('contact','1234567890')
+        u.image_url=request.POST.get('image_url','abc.com')
+        u.save()
+        return HttpResponse("data saved")
+    
+
 #this is function to store details of fest created by user 
 def savefest(request):
         #fetch data from POST request and add it to database
         p= Fest()
-        p.fest_name='name'
-        p.fest_desc='desc'
-        p.timings= 'time'
-        p.place='place'
-        p.url='abc.com'
+        p.fest_name=request.POST.get('name','name')
+        p.fest_desc=request.POST.get('desc','This is a fest')
+        p.timings= request.POST.get('time','10-5')
+        p.place=request.POST.get('place','Delhi')
+        p.url=request.POST.get('url','abc.com')
         p.save()
-        return HttpResponse("data saved")
+
+        fest = Fest.objects.filter(fest_name=request.POST.get('name','name'))
+        print fest
+        return HttpResponse(fest.id)
+
+
+#this is function to store details of event of fest created by user 
+def saveevent(request):
+        #fetch data from POST request and add it to database
+        p= Event()
+        p.fest_id=request.POST.get('id','1')
+        p.event_name=request.POST.get('name','name')
+        p.event_desc=request.POST.get('desc','This is a fest')
+        p.timings= request.POST.get('time','10-5')
+        p.place=request.POST.get('place','Delhi')
+        p.image_url=request.POST.get('url','abc.com')
+        p.contact_person=request.POST.get('contact_name','name')
+        p.contact_number=request.POST.get('contact_number','1234567890')
+        p.save()
+        
+        return HttpResponse('Data Saved')
+
+    
     
