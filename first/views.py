@@ -68,14 +68,14 @@ def saveuser(request):
 def savefest(request):
         #fetch data from POST request and add it to database
         p= Fest()
-        p.fest_name=request.POST.get('name','name')
+        p.fest_name=request.POST.get('name','name1')
         p.fest_desc=request.POST.get('desc','This is a fest')
         p.timings= request.POST.get('time','10-5')
         p.place=request.POST.get('place','Delhi')
         p.url=request.POST.get('url','abc.com')
         p.save()
-
-        fest = Fest.objects.filter(fest_name=request.POST.get('name','name'))
+        print request.POST.get('name','name')
+        fest = Fest.objects.get(fest_name=request.POST.get('name','name1'))
         print fest
         return HttpResponse(fest.id)
 
