@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>Sign Up - AppRevelations</title>
+<link href="signup.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    <script  type="text/javascript">
+       
+        function senddata() {
+
+             var userFirstName = document.getElementById('firstname').value;
+             var userLastName = document.getElementById('lastname').value;
+             var userEmailId = document.getElementById('email').value;
+             var userPhoneNo = document.getElementById('phone').value;
+             var userPassword = document.getElementById('password').value;
+             
+             var JsonData={};
+             JsonData["firstname"]=userFirstName;
+             JsonData["lastname"]=userLastName;
+             JsonData["email"]=userEmailId;
+             JsonData["phone"]=userPhoneNo;
+             JsonData["password"]=userPassword;
+
+
+
+            var xmlhttp;
+                
+                if (window.XMLHttpRequest)
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else
+                 {// code for IE6, IE5
+                     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                 }
+
+                xmlhttp.onreadystatechange=function()
+                 {
+                      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                        {
+                           //document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                          }
+                }
+
+            xmlhttp.open("POST", "192.168.1.3:8080/saveuser");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify(JsonData));   
+               
+    }
+
+    </script>
+
+           
+
+
+    <div id="main">
+        <div id="createtext">Create Account</div>
+
+        <form  id="user_form">
+            <div id="name">
+                <div id="form">
+                    <input type="text" id="firstname" name="firstname" placeholder="First Name" style="width:200px;">
+                </div>
+                <div id="form1">
+                <input type="text" id="lastname" name="lastname" placeholder="Last Name" style="width:200px;"> 
+                </div>
+            </div>
+            <div id="form">
+            <input type="text" id="email" name="email" placeholder="Email Id">
+            </div>
+            <div id="form">
+            <input type="text" id="phone" name="phone" placeholder="Phone No">
+            </div>
+            <div id="form">
+            <input type="password" id="password" name="password" placeholder="Password">
+            </div>
+            <div id="form">
+            <input type="text" id="repassword" name="repassword" placeholder="Retype Password">
+            </div>
+            <div id="form">
+            <button id="createaccount" onclick="senddata();">Create an Account</button>
+            </div>
+
+        </form>
+
+        <div id="test"></div>
+
+       <!-- <div id="signupfb">
+            <div style="padding-left: 10px;">
+                <img src="facebook-icon.png" height="40px" width="40px" >
+            </div>
+            <div style="padding-left: 15px;padding-top:8px;">
+                Sign up with Facebook
+            </div>
+
+
+        </div>-->
+
+        <div id="alreadytext"><a href="loginpage.html">Already have account. Login with us</a></div>
+    </div>  
+</body>
+
+</html>

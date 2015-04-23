@@ -1,0 +1,80 @@
+$item-width: 100px;
+$hover-bottom-bar-name: bottom-bar;
+$element-count: 5;
+$black: #000;
+$gray: #eee;
+
+@mixin hover-colors($color:inherit, $background-color:inherit){
+  &:hover, &:focus {
+    color: $color;
+    background-color: $background-color;
+  }
+}
+
+.navbar-x {
+
+  text-align: center;
+
+  .nav {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+
+    &:hover,
+      &:focus{ 
+        &.nav-pills > li.active > a{
+          color: $gray;
+        @include hover-colors($black);
+          }
+          }
+    > li{
+
+      > a {
+        width: $item-width;
+        color: $gray;
+        transition: color 0.42s ease-in-out;
+
+        @include hover-colors($black);
+      } // / > a
+
+      &.active{
+        > a {
+          color: $black;
+          background-color: inherit;
+
+        }
+          
+      } // / &.active > a
+
+      &.#{$hover-bottom-bar-name} {
+        transition: left 0.42s ease-in-out;
+
+        position: absolute;
+        height: 3px;
+        width: $item-width;
+        bottom: 0;
+        background-color: #ebbf00;
+
+      } // / .#{$hover-bottom-bar-name}{
+        
+      @for $i from 1 through $element-count {
+        &:nth-child(#{$i}){
+
+          &.active  ~ .#{$hover-bottom-bar-name} {
+            left: (($i - 1) * $item-width);
+          }
+
+          &:hover,
+          &:focus{
+            ~ .#{$hover-bottom-bar-name}{
+              left: (($i - 1) * $item-width) !important;
+            }
+
+          }
+
+        }// / &:nth-child(#{$i})
+      }// / @for $i from 1 through $element-count
+
+    }// / > li
+  }// / .nav
+}// /.navbar-x

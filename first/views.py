@@ -36,6 +36,7 @@ def fest_details(request,offset):
 
         #offset is id of the fest 
 	id= int(offset)
+	print id
 	responseArray = []
 	for event in Event.objects.filter(fest_id= id):
 	    data = {}

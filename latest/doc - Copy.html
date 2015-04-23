@@ -1,0 +1,316 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+<title>
+	Utsav
+</title>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<script src="js/modernizr.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="utsav.png" />
+<link href="main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+<!--<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>-->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+<script src="js/main.js"></script> <!-- Gem jQuery -->
+</head>
+<body background-color="#f0f1f2" width="100%">
+    <nav id="fixedbar">
+    <ul id="fixednav">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#publicize">Publicize</a></li>
+      <li><a href="#about_us">About Us</a></li>
+      <li><a href="#contact_us">Contact Us</a></li>
+    </ul>
+  </nav>
+<script type="text/javascript">
+
+        /*function hide()
+        {
+                document.getElementById('top_bar').style.opacity="1";
+                document.getElementById('top_bar').style.zindex="1";
+                document.getElementById('top_bar').style.position="absolute";
+                document.getElementById('top_bar').removeAttribute("class");
+                document.getElementById('newbg').style.opacity="0";
+        }*/
+
+        function additem(fest_name,description,rating,imageURL)
+        {
+            var ni = document.getElementById('parent_div');
+            var mydiv=document.createElement('div');
+            ni.innerHTML+='<div class="single_event_layout"><div style="width:280px; height:250px; background-image:url('+imageURL+'); background-repeat:no-repeat; background-size: cover; "></div><div style="width:280px; height:50px; background-color:#fafafa; "><div style="height:5px;"></div><div class="event_title" style="font-family:ubuntu; color:#595959; margin-left:10px;">'+fest_name+'</div><div class="event_title" style="font-family:sans-serif; color:#9e9e9e; font-size:13px;margin-left:10px;">'+description+'</div></div><div style="height:1px; width:280px; background-color:#eeeeee;"></div><div style="width:280px; height:30px; background-color:#fafafa;"><div style="height:3px;"></div><div class="recommended"><div style="margin-left:10px;"><img src="recommended.png" height="25px" width="25px"></div><div class="no_recomendations"  style="font-family:sans-serif; color:#595959; font-size:12px; margin-top:6px;">'+rating+'</div></div></div></div>';
+
+        }
+
+        function getdata()
+        {
+          var xmlhttp;
+          var response;
+              if (window.XMLHttpRequest)
+              {// code for IE7+, Firefox, Chrome, Opera, Safari
+                 xmlhttp=new XMLHttpRequest();
+              }
+              else
+              {// code for IE6, IE5
+                 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+              }
+              
+              xmlhttp.onreadystatechange=function()
+             {
+                 if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    response=xmlhttp.responseText;
+                }
+             }
+
+            xmlhttp.open("GET","192.168.1.3:8080",true);
+            xmlhttp.send();
+
+            var jsonResponse = JSON.parse(response);
+
+            for(i=0;i<4;i++)
+            {
+                    var fest_name=jsonResponse.get(i).fest_name;
+                    var description=jsonResponse.get(i).description;
+                    var rating=jsonResponse.get(i).rating;
+                    var image_url=jsonResponse.get(i).imageURL;
+                    additem(fest_name,description,rating,imageURL);
+            }
+        }
+    
+        function dialogopen()
+        {
+            var divDialog=document.createElement('div');
+            divDialog.id="cr";
+            divDialog.className="cr";
+            divDialog.innerHTML='<div class="newbg"><div class="close_it"  onclick="hide()" style="height:50px; width:50px; background-color:#fafafa; margin-left:624px;"><img src="cancel.png"></div><div class="hostEvent" style="height:657px; width:50%; background-color:#fafafa;"><div  style="height:400px; width:640px; background-image:url(fest.jpg); background-repeat:no-repeat; background-size: cover; margin-left:25px; margin-top:25px;"></div><div id="text" style="background-color:#f0f1f2; height:257px; padding:20px;"><div  style="font-size:18px; font-family:ubuntu; color:#455a64; ">Engifest</div><div  style="font-size:14px; font-family:ubuntu; color:#607d8b; margin-top:7px;">Focus on creating amazing user experiences and forget complex infrastructure. Instantly add a powerful cloud database, push notification services, and analytics tracking to your app. Choose from over thirteen native SDKs for mobile, desktop, and IoT devices and discover all that Parse has to offer.</div><div style="display: flex; flex-wrap: wrap; margin-top:5px; font-size:16px; font-family:ubuntu; color:#455a64; "><div>Event Timing : - </div><div  id="event_time" style=" "> 9 pm</div></div><div style="display: flex; flex-wrap: wrap; margin-top:5px; font-size:16px; font-family:ubuntu; color:#455a64; "><div>Location : - </div><div  class="location" style=" "> New Delhi</div></div></div></div></div>';
+
+               $( "#cr" ).dialog({
+                    autoOpen: false
+                });
+              
+               $("#cr").dialog('open');
+ 
+        }
+
+        function contact_us()
+        {
+            
+        }
+
+</script>
+
+<!--<div class="newbg">
+         
+         <div class="close_it"  onclick="hide()" style="height:50px; width:50px; background-color:#fafafa; margin-left:624px;">
+                        <img src="cancel.png">
+         </div>
+
+         <div class="hostEvent" style="height:657px; width:50%; background-color:#fafafa;">
+            
+            <div  style="height:400px; width:640px; background-image:url(fest.jpg); background-repeat:no-repeat; background-size: cover; margin-left:25px; margin-top:25px;">
+
+            </div>
+            <div id="text" style="background-color:#f0f1f2; height:257px; padding:20px;">
+                   
+                  <div  style="font-size:18px; font-family:ubuntu; color:#455a64; ">Engifest</div>
+                  <div  style="font-size:14px; font-family:ubuntu; color:#607d8b; margin-top:7px;">Focus on creating amazing user experiences and forget complex infrastructure. Instantly add a powerful cloud database, push notification services, and analytics tracking to your app. Choose from over thirteen native SDKs for mobile, desktop, and IoT devices and discover all that Parse has to offer.</div>
+
+                  <div style="display: flex; flex-wrap: wrap; margin-top:5px; font-size:16px; font-family:ubuntu; color:#455a64; ">
+                  <div>Event Timing : - </div>
+                  <div  id="event_time" style=" "> 9 pm</div>
+                  </div>
+
+                  <div style="display: flex; flex-wrap: wrap; margin-top:5px; font-size:16px; font-family:ubuntu; color:#455a64; ">
+                  <div>Location : - </div>
+                  <div  class="location" style=" "> New Delhi</div>
+                  </div>
+            </div>
+
+         </div>
+</div>-->
+
+
+ <div id="top_bar">
+
+ 	<div id="home_layout">
+
+
+ 		<div style="width:100%; height:55px; background:#1e88e5;">
+
+ 			<div style="width:100%; height:15px; background:#1e88e5;"></div>
+ 			<div id="above_nav">
+ 				
+ 			  <div><img src="utsav.png" width="40px" height="40px"></div>
+ 			   <div style="margin-left:15px; margin-top:6px"><a name="home">Utsav</a></div>
+ 			   <div id="login"><a href="loginpage.html" style="color:#ffffff; text-decoration:none;">Login</a></div> 
+ 			   <div style=" height:15px; width:1px; background-color:#fafafa; margin-top:17px; margin-left:8px;"></div>
+ 			   <div style="margin-left:10px; font-size:15px; margin-top:15px;">
+ 			   	<a href="signuppage.html" style="color:#ffffff; text-decoration:none;">Sign Up</a></div>
+			
+ 			</div>
+ 		 	
+ 		</div>
+ 		<nav id="navigation">
+			<ul>
+				<li><a href="#home"><font size="4">Home</font></a></li>
+				<li><a href="#events"><font size="4">Events</font></a></li>
+				<li><a href="#publicize"><font size="4">Publicize</font></a></li>
+				<li><a href="#about_us"><font size="4">About Us</font></a></li>
+				<li><a href="#contact_us"><font size="4">Contact Us</font></a></li>
+	        </ul>
+        </nav>
+
+    
+        <div style=" background-image:url(testing.jpg); background-repeat:no-repeat; background-size: cover; height:600px;" >
+        	<div style="height:50px; width:100%;"></div>
+        	<div style="font-size:55px; color:#595959; font-family:ubuntu; margin-top:30px; margin-left:690px;">Welcome to Utsav</div>
+        	<div style="font-size:15px; color:#595959; font-family:sans-serif; margin-top:20px; margin-left:690px;">Find out events nearby you. Stay updated with different college fests</div>
+        	<button id="find_more" class="find_more" onclick="dialogopen();">Find More</button>
+
+        </div>
+
+ 	</div>
+
+
+ 	<div id="events_layout">
+
+         <div>
+          <div id="linkgap">
+            <a name="events">Contact Us</a>
+          </div>  
+			<div style="height:28px; width:100%;"></div>
+         	<div style="color:#607d8b; font-size: 45px; font-family: ubuntu; text-align: center;">Popular events</div>
+         	<div style="height:4px; width:130px; background-color:#26a69a; margin-left:600px; margin-top:15px;"></div>
+         	    <div style="height:35px; width:100%;"></div>
+
+                <div class="parent_div" id="parent_div" style=" width:100%;">
+
+                </div>
+         	  <!--  <div id="single_event_layout">
+         				<div style="width:280px; height:250px; background-image:url(fest.jpg); background-repeat:no-repeat; background-size: cover; "></div>
+         				<div style="width:280px; height:50px; background-color:#fafafa; ">
+         				<div style="height:5px;"></div>
+         		  		<div id="event_title" style="font-family:ubuntu; color:#595959; margin-left:10px;">Engifest</div>
+         		  		<div id="event_title" style="font-family:sans-serif; color:#9e9e9e; font-size:13px;margin-left:10px;">Lots of entertainment,star night ...</div>
+         		        </div>
+         	   			 <div style="height:1px; width:280px; background-color:#eeeeee;"></div>
+         		   <div style="width:280px; height:30px; background-color:#fafafa;">
+         		   	      <div style="height:3px;"></div>
+
+         		   			<div id="recommended">
+								<div style="margin-left:10px;"><img src="recommended.png" height="25px" width="25px"></div>
+								<div id="no_recomendations"  style="font-family:sans-serif; color:#595959; font-size:12px; margin-top:6px;">15</div>
+							   </div>
+         	       </div>
+               </div>-->
+                <button id="more_events" onclick="additem();">Check more</button>
+         </div>
+
+ 	</div>
+
+ 	<div id="publicize_layout">
+
+    <div id="linkgap">
+          <a name="publicize">Contact Us</a>
+    </div>     
+ 		<div id="text_host"><p>Want to host your event ?</p></div>
+ 		<div id="text_host_rest"><p>You can publicize your event through our platform.Simply just provide your event details 
+ 									and host your event here on Utsav.</p></div>
+ 		<button id="host_here" >Host Here</button>
+ 		
+
+
+ 	</div>
+
+
+    	
+    	<div id="contact_us">
+        <div id="linkgap">
+          <a name="contact_us">Contact Us</a>
+        </div>
+    		<div id="A">Contact Us
+    		</div>
+    		<div style="height:4px; width:50px; background-color:#26a69a; margin-left:585px; margin-top:15px;"></div>
+    		<div id="support_text">For more info and support, contact us</div>
+					<div id="B">
+						<div id="C">
+							<div style="margin-top: 10px;"><input type:"text" name="email" placeholder="Name">
+							</div>
+							<div style="margin-top: 10px;"><input type:"text" name="email" placeholder="Email">
+							</div>
+							<div style="margin-top:10px;"><textarea rows="9" cols="46" name="email" id="contact_us_message">Message
+							</textarea>
+							</div>
+							<button id="send_contactus">Send</button>
+						</div>
+						<div id="contact_details" >
+							<div id="contact_us_location">
+								<div><img src="location_icon.png"></div>
+								<div id="contact_details_content">Delhi Technological University, New Delhi</div>
+							</div>
+							<div id="contact_us_location">
+								<div><img src="mail_icon.png"></div>
+								<div id="contact_details_content">apprevelations.android@gmail.com</div>
+							</div>
+							<div id="contact_us_location">
+								<div><img src="call_icon.png"></div>
+								<div id="contact_details_content">+91 9910663966</div>
+							</div>
+						</div>
+    				</div>
+    	</div>		
+    	<div id="connect_layout">
+    		    <div style="height:158px; width:100%;"></div>
+    		    <div style="display: flex; flex-wrap: wrap; margin-left:600px;">
+    		    <div><img src="utsav.png" width="40px" height="40px"></div>
+ 			    <div style="margin-left:15px; margin-top:6px font-family: ubuntu;color: #fafafa; font-size: 35px;">Utsav</div>
+ 			    </div>
+				<div class="links" >
+				<img src="googleplus2.png" height="70px" width="70px" >
+				<img src="facebook2.png" height="70px" width="70px" >
+			    </div>
+			    <div style="margin-left:580px; margin-top:36px; font-family: sans-serif;color: #fafafa; font-size: 15px;">Copyright 2015 Apprevelations</div>
+    	</div>
+ </div>
+<a href="#0" class="cd-top">
+    <img src="arrow.png" height="55px" width="55px" >
+</a>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(window).on('scroll',function() {
+    var scrolltop = $(this).scrollTop();
+
+    if(scrolltop >= 215) {
+      $('#fixedbar').fadeIn(250);
+    }
+    
+    else if(scrolltop <= 210) {
+      $('#fixedbar').fadeOut(250);
+    }
+  });
+  $(function() {
+  $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
+});
+
+
+
+
+</script>
+</body>
+</html>
