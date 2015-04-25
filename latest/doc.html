@@ -67,9 +67,9 @@
                     for(i=0;i<2;i++)
                     {
                             var fest_name=jsonResponse.get(i).fest_name;
-                            var description=jsonResponse.get(i).description;
-                            var rating=jsonResponse.get(i).rating;
-                            var image_url=jsonResponse.get(i).imageURL;
+                            var description=jsonResponse.get(i).fest_desc;
+                            var rating=jsonResponse.get(i).place;
+                            var image_url=jsonResponse.get(i).url;
                             additem(fest_name,description,rating,imageURL);
                     }
                 }
