@@ -97,7 +97,7 @@ def savefest(request):
 def saveevent(request):
         #fetch data from POST request and add it to database
         p= Event()
-        p.fest_id=request.POST.get('id','1')
+        p.fest_id=request.POST.get('fest_id','1')
         p.event_name=request.POST.get('name','name')
         p.event_desc=request.POST.get('desc','This is a fest')
         p.timings= request.POST.get('time','10-5')
