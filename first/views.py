@@ -26,9 +26,14 @@ def home(request):
 	    #print fest.id
 	    #print fest.fest_name
 	    #print fest.image_url
-	
-	return HttpResponse(json.dumps(responseArray), content_type="application/json")
 
+
+        response = HttpResponse(json.dumps(responseArray), content_type="application/json")
+        response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
+        response["Access-Control-Max-Age"] = "1000"
+        response["Access-Control-Allow-Headers"] = "*"
+        return response
 
 #function to return details of a particular fest i.e descrption of its events
 def fest_details(request,offset):
@@ -50,7 +55,12 @@ def fest_details(request,offset):
 	    data['contact_number'] = fest.contact_number
 	    responseArray.append(data)
 	
-	return HttpResponse(json.dumps(responseArray), content_type="application/json")
+	response = HttpResponse(json.dumps(responseArray), content_type="application/json")
+        response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
+        response["Access-Control-Max-Age"] = "1000"
+        response["Access-Control-Allow-Headers"] = "*"
+        return response
 
 
 #this is function to store details of user 
