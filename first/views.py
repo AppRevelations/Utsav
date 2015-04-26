@@ -67,7 +67,9 @@ def fest_details(request,offset):
 def saveuser(request):
         #fetch data from POST request and add it to database
         u= User()
-        u.user_name=request.POST.get('name','name')
+        u.first_name=request.POST.get('first_name','name')
+        u.last_name=request.POST.get('last_name','name')
+        u.password=request.POST.get('password','123456789')
         u.email_id=request.POST.get('email','abc@example.com')
         u.contact_number= request.POST.get('contact','1234567890')
         u.image_url=request.POST.get('image_url','abc.com')
@@ -95,7 +97,7 @@ def savefest(request):
 def saveevent(request):
         #fetch data from POST request and add it to database
         p= Event()
-        p.fest_id=request.POST.get('id','1')
+        p.fest_id=request.POST.get('fest_id','1')
         p.event_name=request.POST.get('name','name')
         p.event_desc=request.POST.get('desc','This is a fest')
         p.timings= request.POST.get('time','10-5')

@@ -2,8 +2,6 @@
 <head>
 <title>Sign Up - AppRevelations</title>
 <link href="signup.css" rel="stylesheet" type="text/css">
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-<meta content="utf-8" http-equiv="encoding">
 </head>
 <body>
 
@@ -20,9 +18,10 @@
              var JsonData={};
              JsonData["first_name"]=userFirstName;
              JsonData["last_name"]=userLastName;
-             JsonData["contact"]=userEmailId;
-             JsonData["phone"]=userPhoneNo;
+             JsonData["email_id"]=userEmailId;
+             JsonData["contact_number"]=userPhoneNo;
              JsonData["password"]=userPassword;
+
 
             var xmlhttp;
                 
@@ -43,7 +42,7 @@
                           }
                 }
 
-            xmlhttp.open("POST", "http://127.0.0.1:8000/saveuser");
+            xmlhttp.open("POST", "http://127.0.0.1:8000/saveevent");
             xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xmlhttp.send(JSON.stringify(JsonData));   
                

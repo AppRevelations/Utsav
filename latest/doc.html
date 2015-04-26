@@ -10,8 +10,17 @@
 <link href="main.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
 <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-<!--<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>-->
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<!--   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>-->
+<!--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>-->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<!--
+
+  -->
 <script src="js/main.js"></script> <!-- Gem jQuery -->
 </head>
 <body background-color="#f0f1f2" width="100%">
@@ -64,7 +73,7 @@
 
                     var jsonResponse = JSON.parse(response);
 
-                    for(i=0;i<4;i++)
+                    for(i=0;i<2;i++)
                     {
                             var fest_name=jsonResponse[i].fest_name;
                             var description=jsonResponse[i].fest_desc;
@@ -86,19 +95,61 @@
             divDialog.className="cr";
             divDialog.innerHTML='<div class="newbg"><div class="close_it"  onclick="hide()" style="height:50px; width:50px; background-color:#fafafa; margin-left:624px;"><img src="cancel.png"></div><div class="hostEvent" style="height:657px; width:50%; background-color:#fafafa;"><div  style="height:400px; width:640px; background-image:url(fest.jpg); background-repeat:no-repeat; background-size: cover; margin-left:25px; margin-top:25px;"></div><div id="text" style="background-color:#f0f1f2; height:257px; padding:20px;"><div  style="font-size:18px; font-family:ubuntu; color:#455a64; ">Engifest</div><div  style="font-size:14px; font-family:ubuntu; color:#607d8b; margin-top:7px;">Focus on creating amazing user experiences and forget complex infrastructure. Instantly add a powerful cloud database, push notification services, and analytics tracking to your app. Choose from over thirteen native SDKs for mobile, desktop, and IoT devices and discover all that Parse has to offer.</div><div style="display: flex; flex-wrap: wrap; margin-top:5px; font-size:16px; font-family:ubuntu; color:#455a64; "><div>Event Timing : - </div><div  id="event_time" style=" "> 9 pm</div></div><div style="display: flex; flex-wrap: wrap; margin-top:5px; font-size:16px; font-family:ubuntu; color:#455a64; "><div>Location : - </div><div  class="location" style=" "> New Delhi</div></div></div></div></div>';
 
-               $( "#cr" ).dialog({
-                    autoOpen: false
-                });
               
-               $("#cr").dialog('open');
- 
+             //  $("#cr").dialog();
+             $( "#cr" ).dialog({
+               autoOpen: false,  
+            });
+               $( "#cr" ).dialog( "open" );
+            
         }
 
         function contact_us()
         {
             
+             var userName = document.getElementById('user_Name').value;
+             var userEmail = document.getElementById('user_Email').value;
+             var userMessage = document.getElementById('contact_us_message').value;
+             
+             
+             var JsonData={};
+             JsonData["user_name"]=userName;
+             JsonData["email"]=userEmail;
+             JsonData["message"]=userMessage;
+
+
+            var xmlhttp;
+                
+                if (window.XMLHttpRequest)
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else
+                 {// code for IE6, IE5
+                     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                 }
+
+                xmlhttp.onreadystatechange=function()
+                 {
+                      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                        {
+                           //document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                          }
+                }
+
+            xmlhttp.open("POST", "http://127.0.0.1:8000/saveevent");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify(JsonData));   
+               
         }
 
+        function directGoogle() {
+              window.location.assign("https://plus.google.com/u/0/109761980797559505302/posts");
+      }
+      
+      function directFacebook() {
+              window.location.assign("https://www.facebook.com/exploreDTU?ref=hl");
+      }
 </script>
 
 <!--<div class="newbg">
@@ -236,14 +287,14 @@
     		<div id="support_text">For more info and support, contact us</div>
 					<div id="B">
 						<div id="C">
-							<div style="margin-top: 10px;"><input type:"text" name="email" placeholder="Name">
+							<div style="margin-top: 10px;"><input type:"text" name="user_Name" placeholder="Name">
 							</div>
-							<div style="margin-top: 10px;"><input type:"text" name="email" placeholder="Email">
+							<div style="margin-top: 10px;"><input type:"text" name="user_Email" placeholder="Email">
 							</div>
-							<div style="margin-top:10px;"><textarea rows="9" cols="46" name="email" id="contact_us_message">Message
+							<div style="margin-top:10px;"><textarea rows="9" cols="46" name="contact_us_message" id="contact_us_message">Message
 							</textarea>
 							</div>
-							<button id="send_contactus">Send</button>
+							<button id="send_contactus" onclick="contact_us();">Send</button>
 						</div>
 						<div id="contact_details" >
 							<div id="contact_us_location">
@@ -268,8 +319,8 @@
  			    <div style="margin-left:15px; margin-top:6px font-family: ubuntu;color: #fafafa; font-size: 35px;">Utsav</div>
  			    </div>
 				<div class="links" >
-				<img src="googleplus2.png" height="70px" width="70px" >
-				<img src="facebook2.png" height="70px" width="70px" >
+				<img src="googleplus2.png" height="70px" width="70px" onclick="directGoogle();">
+				<img src="facebook2.png" height="70px" width="70px" onclick="directFacebook();">
 			    </div>
 			    <div style="margin-left:580px; margin-top:36px; font-family: sans-serif;color: #fafafa; font-size: 15px;">Copyright 2015 Apprevelations</div>
     	</div>

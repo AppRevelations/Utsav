@@ -22,7 +22,9 @@ class Event(models.Model):
     contact_number= models.CharField(max_length=20)
 	
 class User(models.Model):
-    user_name = models.CharField(max_length=256)
+    first_name = models.CharField(max_length=256)
+    last_name = models.CharField(max_length=256)
+    password = models.CharField(max_length=256)
     email_id = models.EmailField()
     contact_number = models.CharField(max_length=20)
     image_url = models.URLField()
