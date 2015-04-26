@@ -12,7 +12,7 @@ class Fest(models.Model):
         #return self.fest_name
 	
 class Event(models.Model):
-    fest_id= models.ForeignKey(Fest)
+    fest_id= models.CharField(max_length=256)
     event_name = models.CharField(max_length=256)
     event_desc = models.CharField(max_length=1000)
     place = models.CharField(max_length=128)
