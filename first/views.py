@@ -45,14 +45,14 @@ def fest_details(request,offset):
 	responseArray = []
 	for event in Event.objects.filter(fest_id= id):
 	    data = {}
-	    data['id']=fest.id
+	    data['id']=event.id
 	    data['event_name'] = event.event_name
 	    data['event_desc'] = event.event_desc
-	    data['timings'] = fest.timings
-	    data['place'] = fest.place
-	    data['url'] = fest.image_url
-	    data['contact_person'] = fest.contact_person
-	    data['contact_number'] = fest.contact_number
+	    data['timings'] = event.timings
+	    data['place'] = event.place
+	    data['url'] = event.image_url
+	    data['contact_person'] = event.contact_person
+	    data['contact_number'] = event.contact_number
 	    responseArray.append(data)
 	
 	response = HttpResponse(json.dumps(responseArray), content_type="application/json")
