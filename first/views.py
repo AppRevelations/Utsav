@@ -78,7 +78,12 @@ def saveuser(request):
         u.contact_number= request.GET['contact']
         u.image_url=request.GET['image_url']
         u.save()
-        return HttpResponse("data saved")
+        response = HttpResponse("data saved")
+        response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
+        response["Access-Control-Max-Age"] = "1000"
+        response["Access-Control-Allow-Headers"] = "*"
+        return response
     
 
 #this is function to store details of fest created by user 

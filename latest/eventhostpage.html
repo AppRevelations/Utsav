@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Create Event</title>
+<link href="eventhost.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div id="header">
+        <div id="createtext">Create An Event</div>
+    </div>
+    <div id="main">
+        <form  id="eventhost_form">
+            <div id="formtext">Event Name</div>
+            <div id="form">
+                <input type="text" id="eventname" name="eventname" placeholder="Give a short distinct name">
+            </div>
+            <div id="formtext">Location</div>
+            <div id="form">
+                <input type="text" id="location" name="location" placeholder="Specify where it's held">
+            </div>
+            <div id="formtext">Date And Time</div>
+            <div id="datetime">
+                <div id="form">
+                    <input type="text" id="date" name="date" placeholder="1-Jan-2015" style="width:200px;">
+                </div>
+                <div id="form1">
+                    <input type="text" id="time" name="time" placeholder="9:00 AM" style="width:200px;">
+                </div>
+            </div>
+            <div id="formtext">Event Description</div>
+            <div id="form">
+                <textarea rows="9" cols="50" name="email" id="contact_us_message">Tell People What's Special About The Event</textarea>
+            </div>
+            <div id="form2">
+                <div style=" font-family: ubuntu; color: #444;font-size: 20px;">Upload poster or image of your event</div>
+                <input type="file" name="pic" accept="image/*" style="margin-top:10px;">
+            </div>
+            <div id="formtext">Oragnizer Name</div>
+            <div id="form">
+                <input type="text" id="organizername" name="organizername" placeholder="Who's organizing the event?">
+            </div>
+            <div id="formtext">Contact Number</div>
+            <div id="form">
+                <input type="text" id="organizernumber" name="organizernumber" placeholder="Contact number of oraganizer">
+            </div>
+            <div id="form2" style="padding-top:20px;">
+                <button id="createevent" onclick="senddata();">Make Your Live</button>
+            </div>
+        </form>
+    </div>  
+</body>
+
+</html>
