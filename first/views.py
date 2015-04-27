@@ -66,12 +66,11 @@ def fest_details(request,offset):
 #this is function to store details of user 
 def saveuser(request):
         #fetch data from POST request and add it to database
-        print "rgff"
-        print request
+        #print "rgff"
+        #print request
         u= User()
         u.first_name=request.GET['first_name']
         print u.first_name
-        print request.GET['first_name']
         u.last_name=request.GET['last_name']
         u.password=request.GET['password']
         u.email_id=request.GET['email']
@@ -80,9 +79,9 @@ def saveuser(request):
         u.save()
         response = HttpResponse("data saved")
         response["Access-Control-Allow-Origin"] = "*"
-        response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
-        response["Access-Control-Max-Age"] = "1000"
-        response["Access-Control-Allow-Headers"] = "*"
+        #response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
+        #response["Access-Control-Max-Age"] = "1000"
+        #response["Access-Control-Allow-Headers"] = "*"
         return response
     
 
@@ -99,7 +98,9 @@ def savefest(request):
         print request.GET['name']
         fest = Fest.objects.get(fest_name=request.GET['name'])
         print fest
-        return HttpResponse(fest.id)
+        response = HttpResponse(fest.id)
+        response["Access-Control-Allow-Origin"] = "*"
+        return response
 
 
 #this is function to store details of event of fest created by user 
@@ -115,8 +116,10 @@ def saveevent(request):
         p.contact_person=request.GET['contact_name']
         p.contact_number=request.GET['contact_number']
         p.save()
+        response = HttpResponse("data saved")
+        response["Access-Control-Allow-Origin"] = "*"
         
-        return HttpResponse('Data Saved')
+        return response
 
     
     
