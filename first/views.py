@@ -65,9 +65,6 @@ def fest_details(request,offset):
 
 #this is function to store details of user 
 def saveuser(request):
-        #fetch data from POST request and add it to database
-        #print "rgff"
-        #print request
         u= User()
         u.first_name=request.GET['first_name']
         print u.first_name
@@ -79,15 +76,12 @@ def saveuser(request):
         u.save()
         response = HttpResponse("data saved")
         response["Access-Control-Allow-Origin"] = "*"
-        #response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
-        #response["Access-Control-Max-Age"] = "1000"
-        #response["Access-Control-Allow-Headers"] = "*"
         return response
     
 
 #this is function to store details of fest created by user 
 def savefest(request):
-        #fetch data from POST request and add it to database
+        #fetch data from GET request and add it to database
         p= Fest()
         p.fest_name=request.GET['name']
         p.fest_desc=request.GET['desc']
