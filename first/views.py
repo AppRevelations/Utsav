@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from utsav.models import Fest,Event,User
+from utsav.models import Fest,Event,User,ContactUs
 import json
 
 def hello(request):
@@ -105,7 +105,7 @@ def savefest(request):
 
 #this is function to store details of event of fest created by user 
 def saveevent(request):
-        #fetch data from POST request and add it to database
+        #fetch data from GET request and add it to database
         p= Event()
         p.fest_id=request.GET['fest_id']
         p.event_name=request.GET['name']
@@ -121,5 +121,17 @@ def saveevent(request):
         
         return response
 
-    
+
+#this is function to store contact us messages 
+def contactus(request):
+        #fetch data from GET request and add it to database
+        c= ContactUs()
+        c.name=request.GET['name']
+        c.email=request.GET['email']
+        c.message= request.GET['message']
+        c.save()
+        response = HttpResponse("data saved")
+        response["Access-Control-Allow-Origin"] = "*"
+        
+        return response
     
