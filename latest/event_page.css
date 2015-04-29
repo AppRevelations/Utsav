@@ -26,7 +26,6 @@
 	margin-top: 30px;
 	margin-left: 60px;
 }
-<<<<<<< HEAD
 #latest_events{
 	font-family: ubuntu;
 	color: #424242;
@@ -58,9 +57,6 @@
 	margin-top: 30px;
 	margin-left: 60px;
 }
-=======
-
->>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
 #p_text{
 	font-family: ubuntu;
 	color: #424242;
@@ -96,10 +92,7 @@
 	width: 280px;
 	margin-left:40px;
 	margin-top: 30px;
-<<<<<<< HEAD
 	margin-bottom: 10px;
-=======
->>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
 }
 
 .recommended{
@@ -111,7 +104,6 @@
 	display: flex;
 	flex-wrap: wrap;
 
-<<<<<<< HEAD
 }
 
 #parent_troika{
@@ -129,6 +121,4 @@
 #parent_latest{
 	display: flex;
 	flex-wrap: wrap;
-=======
->>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
 }

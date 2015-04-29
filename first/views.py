@@ -65,19 +65,9 @@ def fest_details(request,offset):
 
 #this is function to store details of user 
 def saveuser(request):
-<<<<<<< HEAD
-        #fetch data from POST request and add it to database
-        print "rgff"
-        print request
         u= User()
         u.first_name=request.GET['first_name']
         print u.first_name
-        print request.GET['first_name']
-=======
-        u= User()
-        u.first_name=request.GET['first_name']
-        print u.first_name
->>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
         u.last_name=request.GET['last_name']
         u.password=request.GET['password']
         u.email_id=request.GET['email']

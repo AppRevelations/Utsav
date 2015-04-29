@@ -2,7 +2,6 @@
 <head>
    <title></title>
    <link href="event_page.css" rel="stylesheet" type="text/css">
-<<<<<<< HEAD
      <script type="text/javascript">
 
        function getdata(fest,parent)
@@ -91,8 +90,6 @@
 
         getdata();
        </script>
-=======
->>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
 </head>
 <body bgcolor="#e0e0e0">
 
@@ -119,7 +116,6 @@
          <div> <button id="host_more"><a href="eventhostpage.html" style="color:#ffffff; text-decoration:none;">Host here</a></button></div>
       </div>
 
-<<<<<<< HEAD
       <div id="latest_events">Latest Events</div>
        
        <div id="parent_latest" style=" margin-left:20px;">
@@ -173,96 +169,6 @@
                getdata(fest,parent);
          </script>
       </div>
-=======
-      <div id="engifest_events">Engifest</div>
-       
-       <div id="parent_div" style=" margin-left:20px;">
-
-         <script type="text/javascript">
-
-       function getdata()
-        {
-          var xmlhttp;
-          var response;
-              if (window.XMLHttpRequest)
-              {// code for IE7+, Firefox, Chrome, Opera, Safari
-                 xmlhttp=new XMLHttpRequest();
-              }
-              else
-              {// code for IE6, IE5
-                 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-              }
-              
-              xmlhttp.onreadystatechange=function()
-             {
-                 if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                {
-                    response=xmlhttp.responseText;
-
-                    var jsonResponse = JSON.parse(response);
-
-                    var fest_id=jsonResponse[0].id;
-                    fetchThroughID(fest_id);
-
-                    console.log(fest_id);
-                     
-                }
-             }
-
-            xmlhttp.open("GET", "http://127.0.0.1:8000/",true);
-            xmlhttp.send();
-        }
-
-          function fetchThroughID(fid)
-        {
-          var xmlhttp;
-          var response;
-              if (window.XMLHttpRequest)
-              {// code for IE7+, Firefox, Chrome, Opera, Safari
-                 xmlhttp=new XMLHttpRequest();
-              }
-              else
-              {// code for IE6, IE5
-                 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-              }
-              
-              xmlhttp.onreadystatechange=function()
-             {
-                 if (xmlhttp.readyState==4 && xmlhttp.status==200)
-                {
-                    response=xmlhttp.responseText;
-
-                    var jsonResponse = JSON.parse(response);
-
-                    for(i=0;i<jsonResponse.length;i++)
-                    {
-                            var fest_name=jsonResponse[i].event_name;
-                            var description=jsonResponse[i].event_desc;
-                            var rating=jsonResponse[i].place;
-                            var image_url=jsonResponse[i].image_url;
-                            additem(fest_name,description,rating,image_url);
-                    }
-                }
-             }
-
-            xmlhttp.open("GET", "http://127.0.0.1:8000/fest/"+fid,true);
-            xmlhttp.send();
-        }
-        function additem(fest_name,description,rating,image_url)
-        {
-            var ni = document.getElementById('parent_div');
-            var mydiv=document.createElement('div');
-            ni.innerHTML+='<div class="single_event_layout"><div style="width:280px; height:250px; background-image:url('+image_url+'); background-repeat:no-repeat; background-size: cover; "></div><div style="width:280px; height:50px; background-color:#fafafa; "><div style="height:5px;"></div><div class="event_title" style="font-family:ubuntu; color:#595959; margin-left:10px;">'+fest_name+'</div><div class="event_title" style="font-family:sans-serif; color:#9e9e9e; font-size:13px;margin-left:10px;">'+description+'</div></div><div style="height:1px; width:280px; background-color:#eeeeee;"></div><div style="width:280px; height:30px; background-color:#fafafa;"><div style="height:3px;"></div><div class="recommended"><div style="margin-left:10px;"><img src="location_icon.png" height="25px" width="25px"></div><div class="no_recomendations"  style="font-family:sans-serif; color:#595959; font-size:12px; margin-top:6px;">'+rating+'</div></div></div></div>';
-        }
-
-        getdata();
-       </script>
-
-
-
-      </div>
-
->>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
 </body>
 </html>
 <!--  <div id="single_event_layout">
