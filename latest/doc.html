@@ -36,9 +36,57 @@
   <div id="cr"></div>
 <script type="text/javascript">
 
+<<<<<<< HEAD
+=======
+        function additem(fest_name,description,rating,image_url)
+        {
+            var ni = document.getElementById('parent_div');
+            var mydiv=document.createElement('div');
+            ni.innerHTML+='<div class="single_event_layout"><div style="width:280px; height:250px; background-image:url('+image_url+'); background-repeat:no-repeat; background-size: cover; "></div><div style="width:280px; height:50px; background-color:#fafafa; "><div style="height:5px;"></div><div class="event_title" style="font-family:ubuntu; color:#595959; margin-left:10px;">'+fest_name+'</div><div class="event_title" style="font-family:sans-serif; color:#9e9e9e; font-size:13px;margin-left:10px;">'+description+'</div></div><div style="height:1px; width:280px; background-color:#eeeeee;"></div><div style="width:280px; height:30px; background-color:#fafafa;"><div style="height:3px;"></div><div class="recommended"><div style="margin-left:10px;"><img src="location_icon.png" height="25px" width="25px"></div><div class="no_recomendations"  style="font-family:sans-serif; color:#595959; font-size:12px; margin-top:6px;">'+rating+'</div></div></div></div>';
+
+           /* <div style="margin-left:10px;"><img src="recommended.png" height="25px" width="25px"></div><div class="no_recomendations"  style="font-family:sans-serif; color:#595959; font-size:12px; margin-top:6px;">'+rating+'</div></div></div></div>';*/
+        }
+
+        function getdata()
+        {
+          var xmlhttp;
+          var response;
+              if (window.XMLHttpRequest)
+              {// code for IE7+, Firefox, Chrome, Opera, Safari
+                 xmlhttp=new XMLHttpRequest();
+              }
+              else
+              {// code for IE6, IE5
+                 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+              }
+              
+              xmlhttp.onreadystatechange=function()
+             {
+                 if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    response=xmlhttp.responseText;
+
+                    var jsonResponse = JSON.parse(response);
+
+                    for(i=0;i<4;i++)
+                    {
+                            var fest_name=jsonResponse[i].fest_name;
+                            var description=jsonResponse[i].fest_desc;
+                            var rating=jsonResponse[i].place;
+                            var image_url=jsonResponse[i].url;
+                            additem(fest_name,description,rating,image_url);
+                    }
+                }
+             }
+
+            xmlhttp.open("GET", "http://127.0.0.1:8000/",true);
+            xmlhttp.send();
+        }
+>>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
     
         function dialogopen(fest_name,description,rating,image_url,timing)
         {
+<<<<<<< HEAD
         
              document.getElementById('cr').innerHTML='<div class="newbg"><div class="hostEvent" style=" width:690px; background-color:#eeeeee;"><div style="height:20px;"></div><div  style="height:400px; width:640px; background-image:url('+image_url+'); background-repeat:no-repeat; background-size: cover; margin-left:25px; margin-top:10px;"></div><div id="text" style="background-color:#1e88e5;  padding:20px;"><div  style="font-size:18px; font-family:ubuntu; color:#fafafa; ">'+fest_name+'</div><div  style="font-size:14px; font-family:ubuntu; color:#e0e0e0; margin-top:7px;">'+description+'</div><div style="display: flex; flex-wrap: wrap; margin-top:5px; "><div style="font-size:16px; font-family:ubuntu; color:#212121;">Event Timing : - </div><div  id="event_time" style="margin-left:10px; margin-top: 2px; font-size:14px; font-family:ubuntu; color:#f5f5f5;">'+timing+'</div></div><div style="display: flex; flex-wrap: wrap; margin-top:5px;"><div style="font-size:16px; font-family:ubuntu; color:#212121;">Location : - </div><div  class="location" style="margin-left:10px; margin-top: 2px;font-size:14px; font-family:ubuntu; color:#f5f5f5;">'+rating+'</div></div></div></div></div>';
               
@@ -47,6 +95,18 @@
                resizable: false,
                 width: 720,
             }).dialog("widget").find(".ui-dialog-title").hide();
+=======
+            var divDialog=document.createElement('div');
+            divDialog.id="cr";
+            divDialog.className="cr";
+            divDialog.innerHTML='<div class="newbg"><div class="close_it"  onclick="hide()" style="height:50px; width:50px; background-color:#fafafa; margin-left:624px;"><img src="cancel.png"></div><div class="hostEvent" style="height:657px; width:50%; background-color:#fafafa;"><div  style="height:400px; width:640px; background-image:url(fest.jpg); background-repeat:no-repeat; background-size: cover; margin-left:25px; margin-top:25px;"></div><div id="text" style="background-color:#f0f1f2; height:257px; padding:20px;"><div  style="font-size:18px; font-family:ubuntu; color:#455a64; ">Engifest</div><div  style="font-size:14px; font-family:ubuntu; color:#607d8b; margin-top:7px;">Focus on creating amazing user experiences and forget complex infrastructure. Instantly add a powerful cloud database, push notification services, and analytics tracking to your app. Choose from over thirteen native SDKs for mobile, desktop, and IoT devices and discover all that Parse has to offer.</div><div style="display: flex; flex-wrap: wrap; margin-top:5px; font-size:16px; font-family:ubuntu; color:#455a64; "><div>Event Timing : - </div><div  id="event_time" style=" "> 9 pm</div></div><div style="display: flex; flex-wrap: wrap; margin-top:5px; font-size:16px; font-family:ubuntu; color:#455a64; "><div>Location : - </div><div  class="location" style=" "> New Delhi</div></div></div></div></div>';
+
+              
+             //  $("#cr").dialog();
+             $( "#cr" ).dialog({
+               autoOpen: false,  
+            });
+>>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
                $( "#cr" ).dialog( "open" );
             
         }
@@ -58,6 +118,65 @@
              var userEmail = document.getElementById('user_Email').value;
              var userMessage = document.getElementById('contact_us_message').value;
              
+<<<<<<< HEAD
+=======
+             
+             var JsonData={};
+             JsonData["user_name"]=userName;
+             JsonData["email"]=userEmail;
+             JsonData["message"]=userMessage;
+
+
+            var xmlhttp;
+                
+                if (window.XMLHttpRequest)
+                {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else
+                 {// code for IE6, IE5
+                     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                 }
+
+                xmlhttp.onreadystatechange=function()
+                 {
+                      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                        {
+                           //document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                          }
+                }
+
+            xmlhttp.open("POST", "http://127.0.0.1:8000/saveevent");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify(JsonData));   
+               
+        }
+
+        function directGoogle() {
+              window.location.assign("https://plus.google.com/u/0/109761980797559505302/posts");
+      }
+      
+      function directFacebook() {
+              window.location.assign("https://www.facebook.com/exploreDTU?ref=hl");
+      }
+</script>
+
+<!--<div class="newbg">
+         
+         <div class="close_it"  onclick="hide()" style="height:50px; width:50px; background-color:#fafafa; margin-left:624px;">
+                        <img src="cancel.png">
+         </div>
+
+         <div class="hostEvent" style="height:657px; width:50%; background-color:#fafafa;">
+            
+            <div  style="height:400px; width:640px; background-image:url(fest.jpg); background-repeat:no-repeat; background-size: cover; margin-left:25px; margin-top:25px;">
+
+            </div>
+            <div id="text" style="background-color:#f0f1f2; height:257px; padding:20px;">
+                   
+                  <div  style="font-size:18px; font-family:ubuntu; color:#455a64; ">Engifest</div>
+                  <div  style="font-size:14px; font-family:ubuntu; color:#607d8b; margin-top:7px;">Focus on creating amazing user experiences and forget complex infrastructure. Instantly add a powerful cloud database, push notification services, and analytics tracking to your app. Choose from over thirteen native SDKs for mobile, desktop, and IoT devices and discover all that Parse has to offer.</div>
+>>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
 
 
             var xmlhttp;
@@ -151,6 +270,7 @@
 
         <script type="text/javascript">
 
+<<<<<<< HEAD
         function additem(fest_name,description,rating,image_url,timing)
         {
             var ni = document.getElementById('parent_div');
@@ -164,6 +284,17 @@
             });*/
                       
         }
+=======
+        function additem(fest_name,description,rating,image_url)
+        {
+            var ni = document.getElementById('parent_div');
+            var mydiv=document.createElement('div');
+            ni.innerHTML+='<div class="single_event_layout"><div style="width:280px; height:250px; background-image:url('+image_url+'); background-repeat:no-repeat; background-size: cover; "></div><div style="width:280px; height:50px; background-color:#fafafa; "><div style="height:5px;"></div><div class="event_title" style="font-family:ubuntu; color:#595959; margin-left:10px;">'+fest_name+'</div><div class="event_title" style="font-family:sans-serif; color:#9e9e9e; font-size:13px;margin-left:10px;">'+description+'</div></div><div style="height:1px; width:280px; background-color:#eeeeee;"></div><div style="width:280px; height:30px; background-color:#fafafa;"><div style="height:3px;"></div><div class="recommended"><div style="margin-left:10px;"><img src="location_icon.png" height="25px" width="25px"></div><div class="no_recomendations"  style="font-family:sans-serif; color:#595959; font-size:12px; margin-top:6px;">'+rating+'</div></div></div></div>';
+
+           /* <div style="margin-left:10px;"><img src="recommended.png" height="25px" width="25px"></div><div class="no_recomendations"  style="font-family:sans-serif; color:#595959; font-size:12px; margin-top:6px;">'+rating+'</div></div></div></div>';*/
+        }
+
+>>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
         function getdata()
         {
           var xmlhttp;
@@ -191,8 +322,12 @@
                             var description=jsonResponse[i].fest_desc;
                             var rating=jsonResponse[i].place;
                             var image_url=jsonResponse[i].url;
+<<<<<<< HEAD
                             var timing=jsonResponse[i].timings;
                             additem(fest_name,description,rating,image_url,timing);
+=======
+                            additem(fest_name,description,rating,image_url);
+>>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
                     }
                 }
              }
@@ -203,7 +338,27 @@
          getdata();
         </script>
                 </div>
+<<<<<<< HEAD
          	  
+=======
+         	  <!--  <div id="single_event_layout">
+         				<div style="width:280px; height:250px; background-image:url(fest.jpg); background-repeat:no-repeat; background-size: cover; "></div>
+         				<div style="width:280px; height:50px; background-color:#fafafa; ">
+         				<div style="height:5px;"></div>
+         		  		<div id="event_title" style="font-family:ubuntu; color:#595959; margin-left:10px;">Engifest</div>
+         		  		<div id="event_title" style="font-family:sans-serif; color:#9e9e9e; font-size:13px;margin-left:10px;">Lots of entertainment,star night ...</div>
+         		        </div>
+         	   			 <div style="height:1px; width:280px; background-color:#eeeeee;"></div>
+         		   <div style="width:280px; height:30px; background-color:#fafafa;">
+         		   	      <div style="height:3px;"></div>
+
+         		   			<div id="recommended">
+								<div style="margin-left:10px;"><img src="recommended.png" height="25px" width="25px"></div>
+								<div id="no_recomendations"  style="font-family:sans-serif; color:#595959; font-size:12px; margin-top:6px;">15</div>
+							   </div>
+         	       </div>
+               </div>-->
+>>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
                 <button id="more_events" ><a href="event_form.html" style="color:#ffffff; text-decoration:none;">Check more</a></button>
          </div>
 

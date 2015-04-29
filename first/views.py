@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from utsav.models import Fest,Event,User
+from utsav.models import Fest,Event,User,ContactUs
 import json
 
 def hello(request):
@@ -65,6 +65,7 @@ def fest_details(request,offset):
 
 #this is function to store details of user 
 def saveuser(request):
+<<<<<<< HEAD
         #fetch data from POST request and add it to database
         print "rgff"
         print request
@@ -72,18 +73,25 @@ def saveuser(request):
         u.first_name=request.GET['first_name']
         print u.first_name
         print request.GET['first_name']
+=======
+        u= User()
+        u.first_name=request.GET['first_name']
+        print u.first_name
+>>>>>>> cfafb56756810d690fe02a0ea027663ca68b5ecc
         u.last_name=request.GET['last_name']
         u.password=request.GET['password']
         u.email_id=request.GET['email']
         u.contact_number= request.GET['contact']
         u.image_url=request.GET['image_url']
         u.save()
-        return HttpResponse("data saved")
+        response = HttpResponse("data saved")
+        response["Access-Control-Allow-Origin"] = "*"
+        return response
     
 
 #this is function to store details of fest created by user 
 def savefest(request):
-        #fetch data from POST request and add it to database
+        #fetch data from GET request and add it to database
         p= Fest()
         p.fest_name=request.GET['name']
         p.fest_desc=request.GET['desc']
@@ -94,12 +102,14 @@ def savefest(request):
         print request.GET['name']
         fest = Fest.objects.get(fest_name=request.GET['name'])
         print fest
-        return HttpResponse(fest.id)
+        response = HttpResponse(fest.id)
+        response["Access-Control-Allow-Origin"] = "*"
+        return response
 
 
 #this is function to store details of event of fest created by user 
 def saveevent(request):
-        #fetch data from POST request and add it to database
+        #fetch data from GET request and add it to database
         p= Event()
         p.fest_id=request.GET['fest_id']
         p.event_name=request.GET['name']
@@ -110,8 +120,22 @@ def saveevent(request):
         p.contact_person=request.GET['contact_name']
         p.contact_number=request.GET['contact_number']
         p.save()
+        response = HttpResponse("data saved")
+        response["Access-Control-Allow-Origin"] = "*"
         
-        return HttpResponse('Data Saved')
+        return response
 
-    
+
+#this is function to store contact us messages 
+def contactus(request):
+        #fetch data from GET request and add it to database
+        c= ContactUs()
+        c.name=request.GET['name']
+        c.email=request.GET['email']
+        c.message= request.GET['message']
+        c.save()
+        response = HttpResponse("data saved")
+        response["Access-Control-Allow-Origin"] = "*"
+        
+        return response
     

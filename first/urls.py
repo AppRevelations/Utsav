@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from first.views import fest_details,home,savefest,saveuser,saveevent
+from first.views import fest_details,home,savefest,saveuser,saveevent,contactus
 
 urlpatterns = patterns('',
     # Examples:
@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^savefest/$', savefest),
     url(r'^saveuser/$', saveuser),
     url(r'^saveevent/$', saveevent),
+    url(r'^contactus/$', contactus),
 
 )

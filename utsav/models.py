@@ -28,3 +28,8 @@ class User(models.Model):
     email_id = models.EmailField()
     contact_number = models.CharField(max_length=20)
     image_url = models.URLField()
+
+class ContactUs(models.Model):
+    name= models.CharField(max_length=256)
+    email= models.CharField(max_length=256)
+    message= models.CharField(max_length=10000)
