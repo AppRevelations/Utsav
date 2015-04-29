@@ -45,14 +45,14 @@ def fest_details(request,offset):
 	responseArray = []
 	for event in Event.objects.filter(fest_id= id):
 	    data = {}
-	    data['id']=fest.id
+	    data['id']=event.id
 	    data['event_name'] = event.event_name
 	    data['event_desc'] = event.event_desc
-	    data['timings'] = fest.timings
-	    data['place'] = fest.place
-	    data['url'] = fest.image_url
-	    data['contact_person'] = fest.contact_person
-	    data['contact_number'] = fest.contact_number
+	    data['timings'] = event.timings
+	    data['place'] = event.place
+	    data['url'] = event.image_url
+	    data['contact_person'] = event.contact_person
+	    data['contact_number'] = event.contact_number
 	    responseArray.append(data)
 	
 	response = HttpResponse(json.dumps(responseArray), content_type="application/json")
@@ -66,13 +66,17 @@ def fest_details(request,offset):
 #this is function to store details of user 
 def saveuser(request):
         #fetch data from POST request and add it to database
+        print "rgff"
+        print request
         u= User()
-        u.first_name=request.POST.get('first_name','name')
-        u.last_name=request.POST.get('last_name','name')
-        u.password=request.POST.get('password','123456789')
-        u.email_id=request.POST.get('email','abc@example.com')
-        u.contact_number= request.POST.get('contact','1234567890')
-        u.image_url=request.POST.get('image_url','abc.com')
+        u.first_name=request.GET['first_name']
+        print u.first_name
+        print request.GET['first_name']
+        u.last_name=request.GET['last_name']
+        u.password=request.GET['password']
+        u.email_id=request.GET['email']
+        u.contact_number= request.GET['contact']
+        u.image_url=request.GET['image_url']
         u.save()
         return HttpResponse("data saved")
     
@@ -81,14 +85,14 @@ def saveuser(request):
 def savefest(request):
         #fetch data from POST request and add it to database
         p= Fest()
-        p.fest_name=request.POST.get('name','name1')
-        p.fest_desc=request.POST.get('desc','This is a fest')
-        p.timings= request.POST.get('time','10-5')
-        p.place=request.POST.get('place','Delhi')
-        p.url=request.POST.get('url','abc.com')
+        p.fest_name=request.GET['name']
+        p.fest_desc=request.GET['desc']
+        p.timings= request.GET['time']
+        p.place=request.GET['place']
+        p.url=request.GET['url']
         p.save()
-        print request.POST.get('name','name')
-        fest = Fest.objects.get(fest_name=request.POST.get('name','name1'))
+        print request.GET['name']
+        fest = Fest.objects.get(fest_name=request.GET['name'])
         print fest
         return HttpResponse(fest.id)
 
@@ -97,14 +101,14 @@ def savefest(request):
 def saveevent(request):
         #fetch data from POST request and add it to database
         p= Event()
-        p.fest_id=request.POST.get('fest_id','1')
-        p.event_name=request.POST.get('name','name')
-        p.event_desc=request.POST.get('desc','This is a fest')
-        p.timings= request.POST.get('time','10-5')
-        p.place=request.POST.get('place','Delhi')
-        p.image_url=request.POST.get('url','abc.com')
-        p.contact_person=request.POST.get('contact_name','name')
-        p.contact_number=request.POST.get('contact_number','1234567890')
+        p.fest_id=request.GET['fest_id']
+        p.event_name=request.GET['name']
+        p.event_desc=request.GET['desc']
+        p.timings= request.GET['time']
+        p.place=request.GET['place']
+        p.image_url=request.GET['url']
+        p.contact_person=request.GET['contact_name']
+        p.contact_number=request.GET['contact_number']
         p.save()
         
         return HttpResponse('Data Saved')

@@ -34,7 +34,7 @@
                           }
                 }
 
-            xmlhttp.open("POST", "http://127.0.0.1:8000/saveuser");
+            xmlhttp.open("POST", "192.168.1.3:8080/saveuser");
             xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xmlhttp.send(JSON.stringify(JsonData));   
                
@@ -63,8 +63,7 @@
                 Log In with Facebook
             </div>
         </div>-->
-
-    	<div id="createtext"><a href="signuppage.html" style="color:#bdbdbd; text-decoration:none;">Create Account</a></div>
+    	<div id="createtext"><a href="signuppage.html">Create Account</a></div>
     </div>	
 </body>
 

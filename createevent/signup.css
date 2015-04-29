@@ -1,0 +1,107 @@
+a:hover{
+    text-decoration: underline;
+}
+a{
+    color: #81D4FA;
+}
+body {
+    font-family: ubuntu;
+    color: #444;
+    background: #e9eaec;
+}
+#main {
+    margin-left: 350px;
+    margin-top: 60px; 
+    width: 700px;
+    height: 470px;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+}
+#name{
+    display: flex;
+    flex-wrap: wrap;
+}
+#createtext{
+    font-size: 20px;
+    margin-left: 40px;
+    padding-top: 10px;
+}
+#alreadytext{
+
+    margin-left: 40px;
+    font-size: 15px;    
+    padding-top: 20px;
+}
+
+#signupfb{
+    font-size: 20px;    
+    margin-left: 40px;
+    padding-top: 5px;
+    width: 300px;
+    height: 45px;
+    background-color:#E0E0E0;    
+    display: flex;
+    flex-wrap: wrap;
+}
+#signupfb:hover{
+    background-color:#BDBDBD;    
+}
+
+#createaccount{
+     background: transparent;
+     color: #81D4FA;
+     width: 200px; 
+     height:40px;
+     background:transparent;
+     background-color:transparent;
+     border-radius: 3px; 
+     border:solid 2px #81D4FA;
+     font-size: 18px; 
+     font-family: ubuntu;
+     
+}
+#createaccount:hover{
+
+       background: #81D4FA;
+       color:#ffffff;
+}
+
+#form{
+    padding-top: 15px;
+    padding-left: 40px;
+}
+#form1{
+    padding-top: 15px;
+    padding-left: 30px;
+}
+input[type=text],
+input[type=password] {
+    color: #777;
+    font-size: 15px;
+    width: 430px;
+    height: 40px;
+    border: 1px solid #c7d0d2;
+    padding-left: 10px;
+    border-radius: 3px;
+    }
+input[type=text]:hover,
+input[type=password]:hover {
+    border: 1px solid #b6bfc0;
+    box-shadow: inset 0 1px 2px rgba(190, 190, 190, .7), 0 0 0 5px #f5f7f8;
+}
+
+input[type=submit] {
+    font-size: 14px;
+    padding-left: 10px;
+    font-weight: bold;
+    width: 100px;
+    height: 40px;
+    border-radius: 3px;
+    border: 1px solid #66add6;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .5);
+}
+input[type=submit]:hover {
+    
+    }
